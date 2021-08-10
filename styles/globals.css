@@ -1,16 +1,30 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+.overflow{
+    height: 50%;
+    overflow: hidden;
+}
+.overflow .card-img-top{
+    transform: scale(1);
+    transition: all 0.2s ease-in-out;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.overflow .card-img-top:hover {
+    transform: scale(1.7);
 }
 
-* {
-  box-sizing: border-box;
+#nprogress .bar {
+    background: rgb(0, 195, 255) !important ;
+}
+
+#nprogress .spinner-icon {
+    border-top: #ffbb00;
+    border-left-color: #ffbb00;
+}
+.card.card-body a{
+    border-radius: 0.25rem;
+}
+.nav-item{
+    font-size: 25px;
+}
+.navbar-brand{
+    font-size: 25px;
 }
