@@ -3,7 +3,7 @@ import Maquina from '../../models/Maquina_model';
 
 export default async function handler(req, res) {
   
-  await conectarDB()
+  await conectarDB();
 
   //POST api/vscada
   const {method} = req 
