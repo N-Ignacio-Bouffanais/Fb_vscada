@@ -14,7 +14,7 @@ export default function Maquinas() {
                             </div>
                             <div className="col-md-6">
                                 <div className="button-make-machines">
-                                    <Link href="#">
+                                    <Link href="/new_maquina">
                                         <a className="btn btn-block btn-primary float-end">Crear maquina</a>
                                     </Link>
                                 </div>
@@ -23,7 +23,7 @@ export default function Maquinas() {
                     </div>
                 </div>
             </div>
-
+            {/**Tarjetas de las maquinas */}
             <div className="col-md-12">
                 <div className="row">
                     <div className="col-md-6">
@@ -66,6 +66,7 @@ export default function Maquinas() {
                                 <div className="col-md-6">
                                     <h3>Vscada</h3>
                                     <p>Software propio</p>
+                                    <h4>La Reina<i className="fas fa-map-marker-alt"></i></h4>
                                 </div>
                                 <div className="col-md-12">
                                     <Link href="#">
@@ -81,7 +82,7 @@ export default function Maquinas() {
                                         <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-edit"></i></a>
                                     </Link>
                                     <Link href="#">
-                                        <a className="btn btn-block btn-warning mt-2 mx-1"><i class="fas fa-trash-alt"></i></a>
+                                        <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-trash-alt"></i></a>
                                     </Link>
                                 </div>
                             </div>
@@ -98,6 +99,7 @@ export default function Maquinas() {
                                 <div className="col-md-6">
                                     <h3>Test</h3>
                                     <p>Software de prueba</p>
+                                    <h4>La Florida<i className="fas fa-map-marker-alt"></i></h4>
                                 </div>
                                 <div className="col-md-12">
                                     <Link href="#">
@@ -113,7 +115,7 @@ export default function Maquinas() {
                                         <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-edit"></i></a>
                                     </Link>
                                     <Link href="#">
-                                        <a className="btn btn-block btn-warning mt-2 mx-1"><i class="fas fa-trash-alt"></i></a>
+                                        <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-trash-alt"></i></a>
                                     </Link>
                                 </div>
                             </div>
