@@ -2,9 +2,25 @@ import Layout from '../components/Layouts';
 import Link from 'next/link';
 import conectarDB from '../lib/DB.Connect';
 import Maquina from '../models/Maquina_model';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+
 
 export default function Maquinas({ maquinas }) {
-    console.log(maquinas)
+    const router = useRouter();
+
+    const deleteData = async() => {
+        const maquinaId = router.query.id;
+        try {
+            await fetch(`/api/vscada/${maquinaId}`,{
+                method: 'DELETE'
+            });
+            router.push("/maquinas");
+        } catch (error) {
+            console.log("Error al eliminar");
+        }
+    }
+
     return (
         <Layout>
             {/**Maquinas y boton crear maquina */}
@@ -35,7 +51,7 @@ export default function Maquinas({ maquinas }) {
                                 <div className="card card-body">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <img src="control.jpg" className="img-fluid" />
+                                            <Image src="/control.jpg" alt="imagen de las maquinas" width={250} height={200}></Image>
                                         </div>
                                         <div className="col-md-6">
                                             <h3>{title}</h3>
@@ -43,8 +59,8 @@ export default function Maquinas({ maquinas }) {
                                             <h4>{ubicacion}<i className="fas fa-map-marker-alt"></i></h4>
                                         </div>
                                         <div className="col-md-12">
-                                            <Link href={`/${_id}`}>
-                                                <a className="btn btn-block btn-warning mt-2 ">Ver dispositvos</a>
+                                            <Link href="#">
+                                                <a className="btn btn-block btn-warning mt-2 ">Ver dispositivos</a>
                                             </Link>
                                             <Link href="#">
                                                 <a className="btn btn-block btn-warning mt-2 mx-1">Seguimiento</a>
@@ -52,12 +68,12 @@ export default function Maquinas({ maquinas }) {
                                             <Link href="#">
                                                 <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-plus-circle"></i></a>
                                             </Link>
-                                            <Link href="#">
+                                            <Link href="/[id]/edit" as={`/${_id}/edit`}>
                                                 <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-edit"></i></a>
                                             </Link>
-                                            <Link href="#">
-                                                <a className="btn btn-block btn-warning mt-2 mx-1"><i className="fas fa-trash-alt"></i></a>
-                                            </Link>
+                                            <button className="btn btn-block btn-warning mt-2 mx-1" onClick={()=>deleteData(`/${_id}`)}>
+                                                <i className="fas fa-trash-alt"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -70,10 +86,10 @@ export default function Maquinas({ maquinas }) {
     )
 }
 
+
 export async function getServerSideProps() {
     try {
         await conectarDB()
-
         const res = await Maquina.find({})
 
         const maquinas = res.map(doc => {

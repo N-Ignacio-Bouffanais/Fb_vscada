@@ -1,7 +1,8 @@
 import Navbar from './Navbar';
+import Nprogress from 'nprogress';
 import {useEffect} from 'react';
 import {useRouter} from 'next/router';
-import Nprogress from 'nprogress';
+
 
 const Layout = ({ children }) => {
     

@@ -1,6 +1,7 @@
 import Layout from '../components/Layouts';
 import { skills, experiences,projects } from '../profile';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function blog() {
     return (
@@ -11,7 +12,7 @@ export default function blog() {
                     <div className="card card-body bg-secondary text-light">
                         <div className="row">
                             <div className="col-md-3">
-                                <img src="foto1.jpg" className="img-fluid" />
+                                <Image src="/foto1.jpg" alt="imagen Factorb" width={300} height={200} ></Image>
                             </div>
                             <div className="col-md-9">
                                 <h1>FactorB</h1>
@@ -83,7 +84,7 @@ export default function blog() {
                                     <div className="col-md-4 p-2" key={i}>
                                         <div className="card h-100">
                                             <div className="overflow">
-                                            <img src={`/${image}`} alt=""  className="card-img-top" />
+                                            <Image src={`/${image}`} alt="imagenes proyectos" layout="responsive" width={300} height={300} className="card-img-top"></Image>
                                             </div>
                                             <div className="card-body">
                                                 <h3>{name}</h3>

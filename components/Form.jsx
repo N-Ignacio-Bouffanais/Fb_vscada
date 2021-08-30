@@ -1,6 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { useState } from 'react';
+import { mutate } from "swr";
 
 const Form = ({ formData, forNewMaquina = true }) => {
 
@@ -23,18 +24,37 @@ const Form = ({ formData, forNewMaquina = true }) => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        if (forNewMaquina) {
-            postData(form)
-        } else {
-            //edit data
-        }
+        e.preventDefault();
+        forNewMaquina ? postData(form) : putData(form);
+    };
 
-    }
+    const putData = async (form) => {
+        setMenssage([]);
+        const { id } = router.query;
+        try {
+          const res = await fetch(`/api/vscada/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(form),
+          });
+          if (!res.ok) {
+            throw new Error(res.status);
+          }
+    
+          const { data } = await res.json();
+          mutate(`/api/vscada/${id}`, data, false);
+          router.push("/maquinas");
+        } catch (error) {
+          setMessage("Falló la edición");
+        }
+      };
+
 
     const postData = async (form) => {
         try {
-            console.log(form);
+
             const res = await fetch('api/vscada', {
                 method: 'POST',
                 headers: {
@@ -55,7 +75,7 @@ const Form = ({ formData, forNewMaquina = true }) => {
                 }
             }
             else {
-                router.push("/")
+                router.push("/maquinas")
             }
 
         } catch (error) {

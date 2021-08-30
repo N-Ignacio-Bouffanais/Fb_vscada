@@ -3,10 +3,6 @@ import Maquina from '../../models/Maquina_model';
 import Link from 'next/link';
 
 const MaquinaPage = ({ success, error, maquina }) => {
-    console.log(success)
-    console.log(error)
-    console.log(maquina)
-
     if (!success) {
         return (
             <div className="container text-center my-5">
@@ -17,7 +13,6 @@ const MaquinaPage = ({ success, error, maquina }) => {
             </div>
         );
     }
-
     return (
         <div className="container">
             <h1>detalle de maquina</h1>
@@ -28,7 +23,7 @@ const MaquinaPage = ({ success, error, maquina }) => {
                     </div>
                     <p className="fw-light">{maquina.plot}</p>
                     <h4>{maquina.ubicacion}</h4>
-                    <Link href="/dashboard">
+                    <Link href="/maquinas">
                         <a className="btn btn-success btn-sm me-2">Volver</a>
                     </Link>
                     <Link href={`/${maquina._id}/edit`}>

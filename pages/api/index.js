@@ -8,6 +8,14 @@ export default async function handler(req, res) {
   //POST api/vscada
   const {method} = req 
   switch(method){
+    case "GET":
+      try {
+        const maquinas = await Maquina.find({});
+        res.status(200).json({ success: true, data: maquinas });
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
     case 'POST':
       try {
         

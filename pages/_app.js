@@ -1,4 +1,4 @@
-import 'bootswatch/dist/cosmo/bootstrap.min.css'
+//import 'bootswatch/dist/cosmo/bootstrap.min.css'
 import '../styles/globals.css'
 import React from 'react'
 import Head from 'next/head'
