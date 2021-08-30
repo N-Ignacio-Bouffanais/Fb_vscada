@@ -47,7 +47,6 @@ class App extends Component {
             <div className="card card-body">
               <button onClick={this.Encender}>ON</button>
               <button onClick={this.Apagar}>OFF</button>
-              <p>{datos}</p>
             </div>
           </div>
         </div>
