@@ -1,8 +1,8 @@
-import React, { Component } from "react";
 import Amplify from "aws-amplify";
 import awsconfig from "../../src/aws-exports";
 import { PubSub, Auth } from "aws-amplify";
 import { AWSIoTProvider } from "@aws-amplify/pubsub/lib/Providers";
+import React, { useState, useEffect } from "react";
 
 Amplify.configure(awsconfig);
 
@@ -14,45 +14,50 @@ Amplify.addPluggable(
   })
 );
 
-class App extends Component {
+//class App extends Component 
+function App(){ 
 
-  async componentDidMount() {
+  const [data, setData] = useState([]);
+  const [temp,setData2] = useState([]);
+
+  useEffect(async () => {
     PubSub.subscribe("topic_1").subscribe({
       next: (data) => {
-        const response = data.value.value;
-        console.log(response)
-
+        //const response = data.value.value; test
+        const response = data.value.onoff;
+        console.log(response);
+        setData(response);
+        const temp_recibida = data.value.temperature;
+        console.log(temp_recibida);
+        setData2(temp_recibida);
       },
       error: (error) => console.error(error),
       close: () => console.log("Done"),
     });
-  }
+  }, []);
 
-  Encender(e) {
-    e.preventDefault();
+    const Encender = () => {
     let a = { type: "onoff", value: 1 };
-    PubSub.publish("topic_1", a);
-  }
-  Apagar(e) {
-    e.preventDefault();
+    PubSub.publish("topic5", a);
+    }
+    const Apagar = () => {
     let b = { type: "onoff", value: 0 };
-    PubSub.publish("topic_1", b);
-  }
-  
-  render() {
+    PubSub.publish("topic5", b);
+    }
     return (
       <div className="App">
         <div className="row">
           <div className="col-md-12">
             <div className="card card-body">
-              <button onClick={this.Encender}>ON</button>
-              <button onClick={this.Apagar}>OFF</button>
+              <button onClick={Encender}>ON</button>
+              <button onClick={Apagar}>OFF</button>
+              <h2>{data}</h2>
+              <h2>{temp}</h2>
             </div>
           </div>
         </div>
       </div>
     );
-  }
 }
 
 export default App;
